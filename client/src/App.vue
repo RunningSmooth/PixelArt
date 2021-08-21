@@ -2,13 +2,17 @@
   <h1>PixelArt</h1>
     <ColorPalette
         style="width: 10%; float: left"
-        :changeColor="(inputColor) => changeColor(inputColor)"
+        :inputPen="pen"
     />
     <Canvas
         style="width: calc(80% - 4px); float: left"
         :inputPen="pen"
+        :inputSettings="settings"
     />
-    <Settings style="width: 10%; float: left"/>
+    <Settings
+        style="width: 10%; float: left"
+        :inputSettings="settings"
+    />
 </template>
 
 <script>
@@ -25,13 +29,13 @@ export default {
     return {
       pen: {
         color: "#000000"
+      },
+      settings: {
+        size: "8"
       }
     }
   },
   methods: {
-    changeColor(inputColor) {
-      this.pen.color = inputColor
-    }
   }
 }
 </script>

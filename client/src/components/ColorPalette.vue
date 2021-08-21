@@ -14,11 +14,11 @@
 <script>
 export default {
   name: "ColorPalette",
-  props: ["changeColor"],
+  props: ["inputPen"],
   data() {
     return {
       colors: ["#FF0000", "#0000FF", "#FFFF00", "#008000", "#FFFFFF", "#000000"],
-      pickedColor: ""
+      pen: this.inputPen
     }
   },
   mounted() {
@@ -29,12 +29,10 @@ export default {
   },
   methods: {
     pickColor(color) {
-      this.pickedColor = color
-      this.changeColor(color)
+      this.pen.color = color
     }
   },
   created() {
-/*    this.setSquareHeight()*/
   }
 }
 </script>
