@@ -34,7 +34,8 @@ export default {
         color: "#000000"
       },
       settings: {
-        size: "8"
+        size: "8",
+        type: "single"
       }
     }
   },
