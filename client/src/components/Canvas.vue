@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <div id="square-container">
-      <div v-for="(row, indexRow) in colorArray" :key="indexRow">
+      <div v-for="(row, indexRow) in colorMatrix" :key="indexRow">
         <div
             v-for="(entry, indexColumn) in row"
             :key="indexColumn"
@@ -10,8 +10,6 @@
         </div>
       </div>
     </div>
-    <p>{{settings}}</p>
-    <button @click="downloadCanvas()">Download</button>
   </div>
 </template>
 
@@ -23,7 +21,7 @@ export default {
   props: ["inputPen", "inputSettings"],
   data() {
     return {
-      colorArray: [
+      colorMatrix: [
         ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"],
         ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"],
         ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"],
@@ -38,30 +36,48 @@ export default {
     }
   },
   methods: {
+    /**
+     * After click on .square this function is called.
+     * It sets the color in the colorMatrix for that square. After that this squares css background color is set to
+     * the same color.
+     *
+     * @param indexRow  the vertical position of the square in the matrix
+     * @param indexColumn  the horizontal position of the square in the matrix
+     */
     changeColor(indexRow, indexColumn) {
-      this.colorArray[indexRow][indexColumn] = this.pen.color
+      this.colorMatrix[indexRow][indexColumn] = this.pen.color
       let id = "square" + indexRow + "-" + indexColumn
-      document.getElementById(id).style.background = this.colorArray[indexRow][indexColumn]
+      document.getElementById(id).style.background = this.colorMatrix[indexRow][indexColumn]
     },
+    /**
+     * Function takes all squares and sets there css background color to the belonging color in colorMatrix.
+     */
     paintAllSquares() {
-      for (let i in this.colorArray) {
-        for (let j in this.colorArray[i]) {
+      for (let i in this.colorMatrix) {
+        for (let j in this.colorMatrix[i]) {
           let id = "square" + i + "-" + j
-          document.getElementById(id).style.background = this.colorArray[i][j]
+          document.getElementById(id).style.background = this.colorMatrix[i][j]
         }
       }
     },
+    /**
+     * Function recreates the colorMatrix with the size the user has chosen and fills it with hex codes for the color
+     * white.
+     */
     createSquares() {
-      this.colorArray = []
+      this.colorMatrix = []
       let length = this.settings.size;
       for (let i = 0; i < length; i++) {
         let tempArray = []
         for (let j = 0; j < length; j++) {
           tempArray.push("#FFFFFF")
         }
-        this.colorArray.push(tempArray)
+        this.colorMatrix.push(tempArray)
       }
     },
+    /**
+     * Function calculates and sets the height and width of every .square.
+     */
     resizeSquares() {
       let pixel = 800 / this.settings.size - 2;
       let elements = document.getElementsByClassName("square")
@@ -71,14 +87,21 @@ export default {
       }
 
     },
+    /**
+     * Function is called from Settings.vue via #settings-button.
+     * It calls the functions that are needed to set the square numbers and attributes.
+     */
     changeCanvas() {
       this.createSquares()
       this.$nextTick(() => this.paintAllSquares())
       this.$nextTick(() => this.resizeSquares())
     },
-    test() {
-      console.log("this works even better!")
-    },
+    /**
+     * Function is called from Settings.vue via #download-button.
+     * It takes #square-container and turns it to a blob. Then it gives the user the possibility to download it.
+     * For turning the HTML-component into a blob the "dom-to-image" library is used. For the download the
+     * "file-saver" library is used.
+     */
     async downloadCanvas() {
       let element = document.getElementById('square-container')
       element.style.margin = "0"
@@ -91,16 +114,17 @@ export default {
       element.style.margin = "0 auto";
     },
   },
+  /**
+   * Function is called after the HTML is created.
+   * It uses css to set the color of the canvas squares to the colorMatrix colors.
+   */
   mounted() {
-    for (let i in this.colorArray) {
-      for (let j in this.colorArray[i]) {
+    for (let i in this.colorMatrix) {
+      for (let j in this.colorMatrix[i]) {
         let id = "square" + i + "-" + j
-        document.getElementById(id).style.background = this.colorArray[i][j]
+        document.getElementById(id).style.background = this.colorMatrix[i][j]
       }
     }
-  },
-  created() {
-
   }
 }
 </script>
@@ -123,5 +147,10 @@ export default {
   background: white;
   border: 1px solid black;
   float: left;
+/*  width: calc(12.5% - 2px);
+  padding-top: calc(12.5% - 2px);
+  background: white;
+  border: 1px solid black;
+  float: left;*/
 }
 </style>

@@ -7,6 +7,14 @@
            class="palette-square"
            @click="pickColor(colorCode)">
       </div>
+      <div>
+        <div>
+          Fill
+        </div>
+        <div>
+          Pen
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -17,10 +25,18 @@ export default {
   props: ["inputPen"],
   data() {
     return {
-      colors: ["#FF0000", "#0000FF", "#FFFF00", "#008000", "#FFFFFF", "#000000", "#808080", "#A52A2A", "#800080", "#FFA500"],
+      colors: [
+          "#FF0000", "#0000FF", "#FFFF00", "#008000",
+          "#FFFFFF", "#000000", "#808080", "#A52A2A",
+          "#800080", "#FFA500"
+      ],
       pen: this.inputPen
     }
   },
+  /**
+   * Function is called after the HTML is created.
+   * It uses css to set the color of the color palette squares to the color arrays colors.
+   */
   mounted() {
     for (let i in this.colors) {
       let id = "blob" + i
@@ -28,12 +44,16 @@ export default {
     }
   },
   methods: {
+    /**
+     * After click on a color from the palette, this function is called.
+     * It sets the pens color to the chosen color.
+     *
+     * @param color  string with the hex code of the chosen color.
+     */
     pickColor(color) {
       this.pen.color = color
     }
   },
-  created() {
-  }
 }
 </script>
 
@@ -41,7 +61,6 @@ export default {
 #palette-container{
   background: lightgrey;
   top: 120px;
-  height: 500px;
   border: 1px solid black;
   text-align: center;
 }
@@ -52,10 +71,10 @@ export default {
   width: 80%;
 }
 .palette-square{
-  width: 35%;
-  padding-top: 35%;
-  margin-left: 5px;
-  margin-right: 5px;
+  width: calc(36% - 2px);
+  padding-top: calc(36% - 2px);
+  margin-left: 7%;
+  margin-right: 7%;
   margin-bottom: 10px;
   position: relative;
   border: 1px solid black;

@@ -39,9 +39,17 @@ export default {
     }
   },
   methods: {
+    /**
+     * Function is called from Settings.vue, when #resize-button is clicked.
+     * It calls the changeCanvas function in Canvas.vue.
+     */
     callResize(){
       this.$refs.canvas.changeCanvas()
     },
+    /**
+     * Function is called from Settings.vue, when #download-button is clicked.
+     * It calls the downloadCanvas function in Canvas.vue.
+     */
     callDownload(){
       this.$refs.canvas.downloadCanvas()
     }

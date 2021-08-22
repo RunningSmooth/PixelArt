@@ -13,8 +13,9 @@
       </label>
     </div>
     <br>
-    <button @click="$emit('resizeEvent')">Resize</button>
-    <button @click="$emit('downloadEvent')">Download</button>
+    <button id="resize-button" @click="$emit('resizeEvent')">Resize</button>
+    <br>
+    <button id="download-button" @click="$emit('downloadEvent')">Download</button>
   </div>
 </template>
 
@@ -50,5 +51,8 @@ button {
 }
 button:hover{
   background: gray;
+}
+#download-button {
+
 }
 </style>
