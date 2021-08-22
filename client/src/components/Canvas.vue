@@ -10,12 +10,14 @@
         </div>
       </div>
     </div>
-    <button @click="changeCanvas()">Resize</button>
     <p>{{settings}}</p>
+    <button @click="downloadCanvas()">Download</button>
   </div>
 </template>
 
 <script>
+import domtoimage from "dom-to-image";
+
 export default {
   name: "Canvas",
   props: ["inputPen", "inputSettings"],
@@ -73,9 +75,21 @@ export default {
       this.createSquares()
       this.$nextTick(() => this.paintAllSquares())
       this.$nextTick(() => this.resizeSquares())
-
-    }
-
+    },
+    test() {
+      console.log("this works even better!")
+    },
+    async downloadCanvas() {
+      let element = document.getElementById('square-container')
+      element.style.margin = "0"
+      await domtoimage.toBlob(element)
+        .then(function(blob) {
+          let FileSaver = require('file-saver')
+          console.log(blob)
+          FileSaver.saveAs(blob, "output.jpeg")
+      })
+      element.style.margin = "0 auto";
+    },
   },
   mounted() {
     for (let i in this.colorArray) {

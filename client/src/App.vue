@@ -1,17 +1,20 @@
 <template>
   <h1>PixelArt</h1>
     <ColorPalette
-        style="width: 10%; float: left"
+        style="width: 15%; float: left"
         :inputPen="pen"
     />
     <Canvas
-        style="width: calc(80% - 4px); float: left"
+        style="width: calc(70% - 4px); float: left"
         :inputPen="pen"
         :inputSettings="settings"
+        ref="canvas"
     />
     <Settings
-        style="width: 10%; float: left"
+        style="width: 15%; float: left"
         :inputSettings="settings"
+        @resizeEvent="callResize"
+        @downloadEvent="callDownload"
     />
 </template>
 
@@ -36,6 +39,12 @@ export default {
     }
   },
   methods: {
+    callResize(){
+      this.$refs.canvas.changeCanvas()
+    },
+    callDownload(){
+      this.$refs.canvas.downloadCanvas()
+    }
   }
 }
 </script>

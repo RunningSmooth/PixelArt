@@ -17,7 +17,7 @@ export default {
   props: ["inputPen"],
   data() {
     return {
-      colors: ["#FF0000", "#0000FF", "#FFFF00", "#008000", "#FFFFFF", "#000000"],
+      colors: ["#FF0000", "#0000FF", "#FFFF00", "#008000", "#FFFFFF", "#000000", "#808080", "#A52A2A", "#800080", "#FFA500"],
       pen: this.inputPen
     }
   },
@@ -41,7 +41,7 @@ export default {
 #palette-container{
   background: lightgrey;
   top: 120px;
-  height: 400px;
+  height: 500px;
   border: 1px solid black;
   text-align: center;
 }
