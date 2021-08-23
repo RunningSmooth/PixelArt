@@ -31,11 +31,11 @@ export default {
   data() {
     return {
       pen: {
-        color: "#000000"
+        color: "#000000",
+        type: "fill"
       },
       settings: {
         size: "8",
-        type: "single"
       }
     }
   },

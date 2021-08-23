@@ -17,10 +17,10 @@
     </div>
     <hr>
     <div id="pen-container">
-      <div class="pen-button" @click="setPenType('single')">
+      <div id="single-pen-button" class="pen-button" @click="setPenType('single')">
         Single
       </div>
-      <div class="pen-button" @click="setPenType('fill')">
+      <div id="fill-pen-button" class="pen-button" @click="setPenType('fill')">
         Fill
       </div>
     </div>
@@ -40,18 +40,6 @@ export default {
       ],
       pen: this.inputPen
     }
-  },
-  /**
-   * Function is called after the HTML is created.
-   * It uses css to set the color of the color palette squares to the color arrays colors. Additionally it sets the
-   * color of #blob-chosen to the pens color.
-   */
-  mounted() {
-    for (let i in this.colors) {
-      let id = "blob" + i
-      document.getElementById(id).style.background = this.colors[i]
-    }
-    document.getElementById('blob-chosen').style.background = this.pen.color
   },
   methods: {
     /**
@@ -74,8 +62,32 @@ export default {
     setPenType(type) {
       console.log(type)
       this.pen.type = type
+      switch (type){
+        case "single":
+          document.getElementById("single-pen-button").style.background = "white"
+          document.getElementById("fill-pen-button").style.background = "transparent"
+          break
+        case "fill":
+          document.getElementById("single-pen-button").style.background = "transparent"
+          document.getElementById("fill-pen-button").style.background = "white"
+          break
+      }
+
     }
   },
+  /**
+   * Function is called after the HTML is created.
+   * It uses css to set the color of the color palette squares to the color arrays colors. Additionally it sets the
+   * color of #blob-chosen to the pens color.
+   */
+  mounted() {
+    for (let i in this.colors) {
+      let id = "blob" + i
+      document.getElementById(id).style.background = this.colors[i]
+    }
+    document.getElementById('blob-chosen').style.background = this.pen.color
+    document.getElementById(this.pen.type + "-pen-button").style.background = "white"
+  }
 }
 </script>
 
