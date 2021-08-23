@@ -18,10 +18,10 @@
     <hr>
     <div id="pen-container">
       <div id="single-pen-button" class="pen-button" @click="setPenType('single')">
-        Single
+        <fa icon="paint-brush"/>
       </div>
       <div id="fill-pen-button" class="pen-button" @click="setPenType('fill')">
-        Fill
+        <fa icon="fill-drip"/>
       </div>
     </div>
   </div>
@@ -60,7 +60,6 @@ export default {
      *              a whole surface with color.
      */
     setPenType(type) {
-      console.log(type)
       this.pen.type = type
       switch (type){
         case "single":
@@ -93,6 +92,7 @@ export default {
 
 <style scoped>
 #palette-container{
+  min-width: 140px;
   background: lightgrey;
   top: 120px;
   border: 1px solid black;
@@ -140,7 +140,7 @@ export default {
 }
 .pen-button{
   width: calc(30% - 2px);
-  padding-top: calc(20% - 2px);
+  padding-top: 2px;
   margin-left: 10%;
   margin-right: 10%;
   margin-bottom: 10px;
@@ -148,6 +148,7 @@ export default {
   border: 1px solid black;
   float: left;
   border-radius: 5px;
+  font-size: 2em;
 }
 .pen-button:hover{
   background: gray;

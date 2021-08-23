@@ -15,7 +15,8 @@
     <br>
     <button id="resize-button" @click="$emit('resizeEvent')">Resize</button>
     <br>
-    <button id="download-button" @click="$emit('downloadEvent')">Download</button>
+    <button id="download-button" @click="$emit('downloadEvent')"><fa icon="download"/></button>
+
   </div>
 </template>
 
@@ -33,6 +34,7 @@ export default {
 
 <style scoped>
 #settings-container{
+  background: lightgrey;
   top: 120px;
   height: 400px;
   border: 1px solid black;
