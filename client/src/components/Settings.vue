@@ -1,10 +1,9 @@
 <template>
   <div id="settings-container">
-    <h3>Settings</h3>
-    <br>
+    <h2>Settings</h2>
     <div id="size-container">
-      <label for="sizeSelect">Feldgröße:
-        <select class="dropDown" id="sizeSelect" v-model="settings.size">
+      <label for="sizeSelect">Size:
+        <select class="dropDown" id="sizeSelect" v-model="settings.size" @change="$emit('clearEvent')">
           <option value="8">8x8</option>
           <option value="12">12x12</option>
           <option value="16">16x16</option>
@@ -12,11 +11,20 @@
         </select>
       </label>
     </div>
+    <div id="clear-button" @click="$emit('clearEvent')">
+      <fa icon="trash-alt"/>
+    </div>
     <br>
-    <button id="resize-button" @click="$emit('resizeEvent')">Resize</button>
-    <br>
-    <button id="download-button" @click="$emit('downloadEvent')"><fa icon="download"/></button>
-
+    <hr>
+    <h2>Download</h2>
+    <div class="download-button" @click="$emit('downloadEventJPEG')">
+      <span>JPEG</span><br>
+      <fa icon="download"/>
+    </div>
+    <div class="download-button" @click="$emit('downloadEventPNG')">
+      <span>PNG</span><br>
+      <fa icon="download"/>
+    </div>
   </div>
 </template>
 
@@ -34,9 +42,9 @@ export default {
 
 <style scoped>
 #settings-container{
+  min-width: 140px;
   background: lightgrey;
   top: 120px;
-  height: 400px;
   border: 1px solid black;
 }
 #size-container{
@@ -46,15 +54,41 @@ export default {
   font-size: 20px;
   color: #2c3e50;
   border-color: #2c3e50;
+  cursor: pointer;
 }
-button {
+#clear-button{
+  background: white;
+  width: calc(30% - 2px);
+  padding-top: 4px;
+  margin: 20px 10% 10px;
+  position: relative;
+  border: 1px solid black;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 2em;
+  cursor: pointer;
+}
+#clear-button:hover{
+  filter: brightness(0.70);
+}
+.download-button{
+  background: white;
+  width: calc(30% - 2px);
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  position: relative;
+  border: 1px solid black;
+  float: left;
+  border-radius: 5px;
+  font-size: 2em;
+  cursor: pointer;
+}
+.download-button:hover{
+  filter: brightness(0.70);
+}
+span{
   font-size: 20px;
-  border-radius: 6px;
-}
-button:hover{
-  background: gray;
-}
-#download-button {
-
 }
 </style>

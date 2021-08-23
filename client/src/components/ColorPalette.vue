@@ -63,12 +63,12 @@ export default {
       this.pen.type = type
       switch (type){
         case "single":
-          document.getElementById("single-pen-button").style.background = "white"
-          document.getElementById("fill-pen-button").style.background = "transparent"
+          document.getElementById("single-pen-button").style.background = "#939393"
+          document.getElementById("fill-pen-button").style.background = "white"
           break
         case "fill":
-          document.getElementById("single-pen-button").style.background = "transparent"
-          document.getElementById("fill-pen-button").style.background = "white"
+          document.getElementById("single-pen-button").style.background = "white"
+          document.getElementById("fill-pen-button").style.background = "#939393"
           break
       }
 
@@ -114,6 +114,7 @@ export default {
   margin: 0 auto;
   display: inline-block;
   float: none;
+  cursor: default;
 }
 #blob-chosen:hover{
   filter: brightness(1);
@@ -128,6 +129,7 @@ export default {
   border: 1px solid black;
   float: left;
   border-radius: 20px;
+  cursor: pointer;
 }
 .palette-square:hover{
   filter: brightness(0.50);
@@ -139,6 +141,7 @@ export default {
   padding-bottom: 10px;
 }
 .pen-button{
+  background: white;
   width: calc(30% - 2px);
   padding-top: 2px;
   margin-left: 10%;
@@ -149,8 +152,9 @@ export default {
   float: left;
   border-radius: 5px;
   font-size: 2em;
+  cursor: pointer;
 }
 .pen-button:hover{
-  background: gray;
+  filter: brightness(0.70);
 }
 </style>

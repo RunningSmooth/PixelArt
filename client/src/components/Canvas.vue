@@ -183,10 +183,9 @@ export default {
         element.style.width = pixel + "px";
         element.style.height = pixel + "px";
       }
-
     },
     /**
-     * Function is called from Settings.vue via #settings-button.
+     * Function is called from Settings.vue when #sizeSelect changes or when #clear-button is clicked.
      * It calls the functions that are needed to set the square numbers and attributes.
      */
     changeCanvas() {
@@ -199,15 +198,17 @@ export default {
      * It takes #square-container and turns it to a blob. Then it gives the user the possibility to download it.
      * For turning the HTML-component into a blob the "dom-to-image" library is used. For the download the
      * "file-saver" library is used.
+     *
+     * @param format  string with the image format the user wants
      */
-    async downloadCanvas() {
+    async downloadCanvas(format) {
       let element = document.getElementById('square-container');
       element.style.margin = "0";
       await domtoimage.toBlob(element)
         .then(function(blob) {
           let FileSaver = require('file-saver');
           console.log(blob);
-          FileSaver.saveAs(blob, "output.jpeg");
+          FileSaver.saveAs(blob, "output." + format);
       })
       element.style.margin = "0 auto";
     },
@@ -238,6 +239,7 @@ export default {
   max-width: 800px;
   height: 800px;
   border: 1px solid black;
+  cursor: pointer;
 }
 .square{
   width: 98px;

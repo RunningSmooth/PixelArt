@@ -13,8 +13,9 @@
     <Settings
         style="width: 15%; float: left"
         :inputSettings="settings"
-        @resizeEvent="callResize"
-        @downloadEvent="callDownload"
+        @clearEvent="callClearResize"
+        @downloadEventPNG="callDownloadPNG"
+        @downloadEventJPEG="callDownloadJPEG"
     />
 </template>
 
@@ -41,18 +42,25 @@ export default {
   },
   methods: {
     /**
-     * Function is called from Settings.vue, when #resize-button is clicked.
+     * Function is called from Settings.vue when #sizeSelect changes or #clear-button is clicked.
      * It calls the changeCanvas function in Canvas.vue.
      */
-    callResize(){
+    callClearResize(){
       this.$refs.canvas.changeCanvas()
     },
     /**
-     * Function is called from Settings.vue, when #download-button is clicked.
-     * It calls the downloadCanvas function in Canvas.vue.
+     * Function is called from Settings.vue, when #download-button for PNG is clicked.
+     * It calls the downloadCanvas function in Canvas.vue and gives 'png' as image format.
      */
-    callDownload(){
-      this.$refs.canvas.downloadCanvas()
+    callDownloadPNG(){
+      this.$refs.canvas.downloadCanvas("png")
+    },
+    /**
+     * Function is called from Settings.vue, when #download-button for JPEG is clicked.
+     * It calls the downloadCanvas function in Canvas.vue and gives 'jpeg' as image format.
+     */
+    callDownloadJPEG(){
+      this.$refs.canvas.downloadCanvas("jpeg")
     }
   }
 }

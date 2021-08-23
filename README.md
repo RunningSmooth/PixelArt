@@ -1,12 +1,15 @@
 # PixelArt
 
+![Pixel Art Beispiel](pixel_art_demo.png)
+
 ## Used technologies / Frameworks
 
 I use the following technologies / frameworks in my project:
 
 - Vue.js (HTML, JavaScript, CSS)
 
-I chose Vue.js because I already had made experience with this web-framework in my bachelor thesis. 
+I chose Vue.js because I already had made experience with this web-framework in my bachelor thesis. Also, this 
+coding-challenge was a good chance to gather more experience in web development.
 
 ## Used 3rd Party Libraries
 
@@ -16,6 +19,7 @@ Name | Reason
 --- | ---
 [dom-to-image](https://github.com/tsayen/dom-to-image) | For transforming a HTML-component into an image
 [FileSaver.js](https://github.com/eligrey/FileSaver.js/) | For downloading the image that was created with 'dom-to-image'
+[FontAwesome](https://fontawesome.com/) | For icons
 
 ## Installation / Run
 
