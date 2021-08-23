@@ -32,7 +32,7 @@ export default {
     return {
       pen: {
         color: "#000000",
-        type: "fill"
+        type: "single"
       },
       settings: {
         size: "8",

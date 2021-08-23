@@ -54,7 +54,7 @@ export default {
     },
     /**
      * After click on a .pen-button this function is called.
-     * It sets the pens type to the chosen type.
+     * It sets the pens type to the chosen type and it sets the background-color of the clicked button.
      *
      * @param type  string with the chosen type. It can be 'single' for single square coloring or 'fill' for filling a
      *              a whole surface with color.
